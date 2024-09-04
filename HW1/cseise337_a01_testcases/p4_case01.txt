@@ -1,0 +1,19 @@
+.:
+total 0
+-rwxrwxrwx 1 cmk cmk  32 Mar 13 21:04 a1.txt
+-rwxrwxrwx 1 cmk cmk  28 Mar 13 21:05 a2.txt
+-rwxrwxrwx 1 cmk cmk  32 Mar 13 21:06 a3.txt
+drwxrwxrwx 1 cmk cmk 512 Mar 13 21:07 d1
+
+./d1:
+total 0
+-rwxrwxrwx 1 cmk cmk  26 Mar 13 21:06 b1.txt
+-rwxrwxrwx 1 cmk cmk  35 Mar 13 21:07 b2.txt
+-rwxrwxrwx 1 cmk cmk  34 Mar 13 21:07 b3.txt
+drwxrwxrwx 1 cmk cmk 512 Mar 13 21:08 d2
+
+./d1/d2:
+total 0
+-rwxrwxrwx 1 cmk cmk 51 Mar 13 21:08 c1.txt
+-rwxrwxrwx 1 cmk cmk 46 Mar 13 21:08 c2.txt
+-rwxrwxrwx 1 cmk cmk 50 Mar 13 21:08 c3.txt

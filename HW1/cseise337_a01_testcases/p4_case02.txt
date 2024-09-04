@@ -1,0 +1,40 @@
+.:
+total 0
+drwxrwxrwx 1 cmk cmk 512 Mar 13 21:15 d1
+drwxrwxrwx 1 cmk cmk 512 Mar 13 21:17 d2
+-rwxrwxrwx 1 cmk cmk  37 Mar 13 21:15 z1.txt
+-rwxrwxrwx 1 cmk cmk  38 Mar 13 21:15 z2.txt
+
+./d1:
+total 0
+drwxrwxrwx 1 cmk cmk 512 Mar 13 21:16 d3
+drwxrwxrwx 1 cmk cmk 512 Mar 13 21:16 d4
+-rwxrwxrwx 1 cmk cmk  43 Mar 13 21:15 y1.txt
+-rwxrwxrwx 1 cmk cmk  50 Mar 13 21:15 y2.txt
+
+./d1/d3:
+total 0
+-rwxrwxrwx 1 cmk cmk 49 Mar 13 21:16 x1.txt
+-rwxrwxrwx 1 cmk cmk 50 Mar 13 21:16 x2.txt
+
+./d1/d4:
+total 0
+-rwxrwxrwx 1 cmk cmk 59 Mar 13 21:16 w1.txt
+-rwxrwxrwx 1 cmk cmk 59 Mar 13 21:16 w2.txt
+
+./d2:
+total 0
+drwxrwxrwx 1 cmk cmk 512 Mar 13 21:17 d5
+drwxrwxrwx 1 cmk cmk 512 Mar 13 21:18 d6
+-rwxrwxrwx 1 cmk cmk  55 Mar 13 21:17 v1.txt
+-rwxrwxrwx 1 cmk cmk  50 Mar 13 21:17 v2.txt
+
+./d2/d5:
+total 0
+-rwxrwxrwx 1 cmk cmk 55 Mar 13 21:17 u1.txt
+-rwxrwxrwx 1 cmk cmk 46 Mar 13 21:17 u2.txt
+
+./d2/d6:
+total 0
+-rwxrwxrwx 1 cmk cmk 57 Mar 13 21:18 t1.txt
+-rwxrwxrwx 1 cmk cmk 63 Mar 13 21:18 t2.txt

@@ -1,0 +1,145 @@
+CSE/ISE 337
+Spring, 2023
+Assignment 02 Test Cases
+
+Each test cases is a tuple.
+The first element is the input.
+The second element is the expected output.
+
+# Problem 01 - highlight(pattern, string)
+# 0.4 points per case
+pat1 = r'p|\s|r'
+p1_01 = ((pat1, "dancing room"), "dancing< >room")
+p1_02 = ((pat1, "[A]"), None)
+p1_03 = ((pat1, "report"), "<r>eport")
+p1_04 = ((pat1, "card"), "ca<r>d")
+p1_05 = ((pat1, "'lirr train'"), "'li<r>r train'")
+pat2 = r'[0-8]{3}'
+p1_06 = ((pat2, "cse337"), "cse<337>")
+p1_07 = ((pat2, "class2021"), "class<202>1")
+p1_08 = ((pat2, "04-03-2021"), "04-03-<202>1")
+p1_09 = ((pat2, "256.781"), "<256>.781")
+p1_10 = ((pat2, "905-381-5472"), "905-<381>-5472")
+pat3 = r'c.*'
+p1_11 = ((pat3, "cc"), "<cc>")
+p1_12 = ((pat3, "rock"), "ro<ck>")
+p1_13 = ((pat3, "coca-cola"), "<coca-cola>")
+p1_14 = ((pat3, "<c#>"), "<<c#>>")
+p1_15 = ((pat3, "rubik's cube"), "rubik's <cube>")
+pat4 = r'\bbook\B'
+p1_16 = ((pat4, "bookstore"), "<book>store")
+p1_17 = ((pat4, "booking"), "<book>ing")
+p1_18 = ((pat4, "textbooks"), None)
+p1_19 = ((pat4, "'returned books'"), "'returned <book>s'")
+p1_20 = ((pat4, "audiobook"), None)
+pat5 = r'[^O]*o+'
+p1_21 = ((pat5, "balloons"), "<balloo>ns")
+p1_22 = ((pat5, "FOODY"), None)
+p1_23 = ((pat5, "bookstore"), "<booksto>re")
+p1_24 = ((pat5, '"Look"'), '<"Loo>k"')
+p1_25 = ((pat5, "PoolRoOM"), "<PoolRo>OM")
+p1_cases = [p1_01, p1_02, p1_03, p1_04, p1_05,
+            p1_06, p1_07, p1_08, p1_09, p1_10,
+            p1_11, p1_12, p1_13, p1_14, p1_15,
+            p1_16, p1_17, p1_18, p1_19, p1_20,
+            p1_21, p1_22, p1_23, p1_24, p1_25]
+
+    
+# Problem 02 - highlight_all(pattern, string)
+# 1 point per case
+p2_str = "I could have become a mass murderer after I hacked my governor module, but then I realized I could access the combined feed of entertainment channels carried on the company satellites. It had been well over 35000 hours or so since then, with still not much murdering, but probably, I don\'t know, a little under 35000 hours of movies, serials, books, plays, and music consumed. As a heartless killing machine, I was a terrible failure."
+p2_01 = ((r'I', p2_str), "<I> could have become a mass murderer after <I> hacked my governor module, but then <I> realized <I> could access the combined feed of entertainment channels carried on the company satellites. <I>t had been well over 35000 hours or so since then, with still not much murdering, but probably, <I> don't know, a little under 35000 hours of movies, serials, books, plays, and music consumed. As a heartless killing machine, <I> was a terrible failure.")
+p2_02 = ((r'\b[a-zA-Z]\b', p2_str), "<I> could have become <a> mass murderer after <I> hacked my governor module, but then <I> realized <I> could access the combined feed of entertainment channels carried on the company satellites. It had been well over 35000 hours or so since then, with still not much murdering, but probably, <I> don'<t> know, <a> little under 35000 hours of movies, serials, books, plays, and music consumed. As <a> heartless killing machine, <I> was <a> terrible failure.")
+p2_03 = ((r'35000', p2_str), "I could have become a mass murderer after I hacked my governor module, but then I realized I could access the combined feed of entertainment channels carried on the company satellites. It had been well over <35000> hours or so since then, with still not much murdering, but probably, I don't know, a little under <35000> hours of movies, serials, books, plays, and music consumed. As a heartless killing machine, I was a terrible failure.")
+p2_04 = ((r'\d+', p2_str), "I could have become a mass murderer after I hacked my governor module, but then I realized I could access the combined feed of entertainment channels carried on the company satellites. It had been well over <35000> hours or so since then, with still not much murdering, but probably, I don't know, a little under <35000> hours of movies, serials, books, plays, and music consumed. As a heartless killing machine, I was a terrible failure.")
+p2_05 = ((r'\bs.*?\b', p2_str), "I could have become a mass murderer after I hacked my governor module, but then I realized I could access the combined feed of entertainment channels carried on the company <satellites>. It had been well over 35000 hours or <so> <since> then, with <still> not much murdering, but probably, I don't know, a little under 35000 hours of movies, <serials>, books, plays, and music consumed. As a heartless killing machine, I was a terrible failure.")
+p2_06 = ((r'\b\w+ed\b', p2_str), "I could have become a mass murderer after I <hacked> my governor module, but then I <realized> I could access the <combined> <feed> of entertainment channels <carried> on the company satellites. It had been well over 35000 hours or so since then, with still not much murdering, but probably, I don't know, a little under 35000 hours of movies, serials, books, plays, and music <consumed>. As a heartless killing machine, I was a terrible failure.")
+p2_07 = ((r'\b.*?\.', p2_str), "<I could have become a mass murderer after I hacked my governor module, but then I realized I could access the combined feed of entertainment channels carried on the company satellites.> <It had been well over 35000 hours or so since then, with still not much murdering, but probably, I don't know, a little under 35000 hours of movies, serials, books, plays, and music consumed.> <As a heartless killing machine, I was a terrible failure.>")
+p2_08 = ((r'\bR2-D2\b', p2_str), None)
+p2_09 = ((r'\b[a-zA-Z]{3}\d{2}', p2_str), None)
+p2_10 = ((r'[^\s.,]+', p2_str), "<I> <could> <have> <become> <a> <mass> <murderer> <after> <I> <hacked> <my> <governor> <module>, <but> <then> <I> <realized> <I> <could> <access> <the> <combined> <feed> <of> <entertainment> <channels> <carried> <on> <the> <company> <satellites>. <It> <had> <been> <well> <over> <35000> <hours> <or> <so> <since> <then>, <with> <still> <not> <much> <murdering>, <but> <probably>, <I> <don't> <know>, <a> <little> <under> <35000> <hours> <of> <movies>, <serials>, <books>, <plays>, <and> <music> <consumed>. <As> <a> <heartless> <killing> <machine>, <I> <was> <a> <terrible> <failure>.")
+p2_cases = [p2_01, p2_02, p2_03, p2_04, p2_05,
+            p2_06, p2_07, p2_08, p2_09, p2_10]
+
+# Problem 03 - ruin_a_webpage(filename)
+# 1 point per case
+
+p3_01 = ("p3_file01.html", "p3_ruined01.html")
+p3_02 = ("p3_file02.html", "p3_ruined02.html")
+p3_03 = ("p3_file03.html", "p3_ruined03.html")
+p3_04 = ("p3_file04.html", "p3_ruined04.html")
+p3_05 = ("p3_file05.html", "p3_ruined05.html")
+p3_06 = ("p3_file06.html", "p3_ruined06.html")
+p3_07 = ("p3_file07.html", "p3_ruined07.html")
+p3_08 = ("p3_file08.html", "p3_ruined08.html")
+p3_09 = ("p3_file09.html", "p3_ruined09.html")
+p3_10 = ("p3_file10.txt", None)
+p3_cases = [p3_01, p3_02, p3_03, p3_04, p3_05,
+            p3_06, p3_07, p3_08, p3_09, p3_10]
+
+# Problem 04 - decompose_path(path)
+# 1 points per case
+p4_01 = ("", [])
+p4_02 = ("/dir1:", ["/dir1"])
+p4_03 = ("/dir1:/dir2", ["/dir1", "/dir2"])
+p4_04 = ("/dir1/dir3:/dir2", ["/dir1/dir3", "/dir2"])
+p4_05 = ("/dir1/dir3:/dir2/dir4", ["/dir1/dir3", "/dir2/dir4"])
+p4_06 = ("/dir1:/dir1/dir3:/dir2", ["/dir1", "/dir1/dir3", "/dir2"])
+p4_07 = ("/dir1:/dir2:/dir2/dir4", ["/dir1", "/dir2", "/dir2/dir4"])
+p4_08 = ("/dir1:/dir1/dir3:/dir2:dir2/dir4", ["/dir1", "/dir1/dir3", "/dir2", "dir2/dir4"])
+p4_09 = ("/dir1:/dir2:/dir3:/dir4:/dir5", ["/dir1", "/dir2", "/dir3", "/dir4", "/dir5"])
+p4_10 = ("/usr/openwin/bin:/usr/ucb:/usr/bin:/bin:/etc:/usr/local/bin"+":/usr/local/lib:/usr/shareware/bin:/usr/shareware/lib:.", ["/usr/openwin/bin", "/usr/ucb", "/usr/bin", "/bin", "/etc", "/usr/local/bin", "/usr/local/lib", "/usr/shareware/bin", "/usr/shareware/lib", "."])
+p4_cases = [p4_01, p4_02, p4_03, p4_04, p4_05,
+            p4_06, p4_07, p4_08, p4_09, p4_10]
+
+# Problem 05 - link_mapper(filename)
+# 1 pt. per case, for cases: 01, 06
+# 2 pts. per case, for cases: 02, 03, 04, 05
+p5_01 = ("p5_file01.html", {"p5_file01.html" : []})
+p5_02 = ("p5_file02.html", {"p5_file02.html" : [("Case 2", "http://www.case2.com")]})
+p5_03 = ("p5_file03.html", {"p5_file03.html" : [("Case 3a", "http://www.case3a.com"), 
+                                                ("Case 3b", "http://www.case3b.com")]})
+p5_04 = ("p5_file04.html", {"p5_file04.html" : [("Case 4a", "http://www.case4a.com"),
+                                                ("Case 4b", "http://www.case4b.com"),
+                                                ("Case 4c (multi-line)",
+                                                 "http://www.case4hasareallylonglink.com")]})
+p5_05 = ("p5_file05.html", {"p5_file05.html" : [('Syllabus', 'CSE337_Syllabus_Spring2021.pdf'),
+               ('https://www.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE337',
+                'https://www.cs.stonybrook.edu/students/Undergraduate-Studies/courses/CSE337'),
+               ('https://www.cs.stonybrook.edu/students/Undergraduate-Studies/courses/ISE337',
+                'https://www.cs.stonybrook.edu/students/Undergraduate-Studies/courses/ISE337'),
+               ('Dr. Christopher Kane', 'http://www3.cs.stonybrook.edu/~ckane'),
+               ('christopher.kane@stonybrook.edu', 'mailto:christopher.kane@stonybrook.edu'),
+               ('http://blackboard.stonybrook.edu', 'http://blackboard.stonybrook.edu/')]})
+p5_06 = ("p6_file06.txt", None)
+p5_cases = [p5_01, p5_02, p5_03, p5_04, p5_05, p5_06]
+
+# Problem 6 - grammarly(text)
+# 1 pt. per case,  for cases: 01 - 16
+# 2 pts. per case, for cases: 17 - 18
+p6_01 = ("", "")
+p6_02 = ("There is nothing wrong with this sentence.", "There is nothing wrong with this sentence.")
+p6_03 = ("This is not what i was hoping to find.", "This is not what I was hoping to find.")
+p6_04 = ("But, i am what i am.", "But, I am what I am.")
+p6_05 = ("This is sentence 1. this is sentence 2.", "This is sentence 1. This is sentence 2.")
+p6_06 = ("this is sentence 3. this is sentence 4.", "This is sentence 3. This is sentence 4.")
+p6_07 = ("This is a insult.", "This is an insult.")
+p6_08 = ("A enemy is a obstacle.", "An enemy is an obstacle.")
+p6_09 = ("You can say say that again.", "You can say that again.")
+p6_10 = ("I am am seeing seeing double double.", "I am seeing double.")
+p6_11 = ("Three times the fun fun fun.", "Three times the fun.")
+p6_12 = ("Our favorite companions are Garrus, Wrex and Tali.",
+         "Our favorite companions are Garrus, Wrex, and Tali.")
+p6_13 = ("Apples, pears and bananas are some of our favorite fruits, snacks and foods.",
+         "Apples, pears, and bananas are some of our favorite fruits, snacks, and foods.")
+p6_14 = ("I am afraid of lions, tigers, bears, spiders, crocodiles and bunnies.",
+         "I am afraid of lions, tigers, bears, spiders, crocodiles, and bunnies.")
+p6_15 = ("This (case (is about parentheses).", "This case (is about parentheses).")
+p6_16 = ("This (is (another (case) about) parentheses.",
+         "This is (another (case) about) parentheses.")
+p6_17 = ("this is a entirely messed-up sentence sentence that i wrote.", 
+         "This is an entirely messed-up sentence that I wrote.")
+p6_18 = ("i often (wonder how (many many) mistakes i can commit in a single sentence.",
+         "I often wonder how (many) mistakes I can commit in a single sentence.")
+p6_cases = [p6_01, p6_02, p6_03, p6_04, p6_05, p6_06, p6_07, p6_08, p6_09,
+            p6_10, p6_11, p6_12, p6_13, p6_14, p6_15, p6_16, p6_17, p6_18]
